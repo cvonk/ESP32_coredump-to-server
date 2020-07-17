@@ -56,7 +56,7 @@ coredump_to_server(coredump_to_server_config_t const * const write_cfg)
     size_t coredump_size;
     esp_err_t err = esp_core_dump_image_get(&coredump_addr, &coredump_size);
     if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Coredump no image");
+        ESP_LOGI(TAG, "Coredump no image");
         return err;
     }
     size_t const chunk_len = 3 * 16;  // must be multiple of 3
