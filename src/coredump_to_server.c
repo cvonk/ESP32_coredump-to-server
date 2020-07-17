@@ -68,8 +68,10 @@ coredump_to_server(coredump_to_server_config_t const * const write_cfg)
     char * const b64 = malloc(b64_len);
     assert(chunk && b64);
 
-    if ((err = write_cfg->start(write_cfg->priv)) != ESP_OK) {
-        return err;
+    if (write_cfg->start) {
+        if ((err = write_cfg->start(write_cfg->priv)) != ESP_OK) {
+            return err;
+        }
     }
 
     //ESP_LOGI(TAG, "Coredump is %u bytes", coredump_size);
@@ -90,17 +92,20 @@ coredump_to_server(coredump_to_server_config_t const * const write_cfg)
         }
 #endif
         //ets_printf("%s\r\n", b64);
-        if ((err = write_cfg->write(write_cfg->priv, b64)) != ESP_OK) {
-            break;
+        if (write_cfg->write) {
+            if ((err = write_cfg->write(write_cfg->priv, b64)) != ESP_OK) {
+                break;
+            }
         }
     }
     free(chunk);
     free(b64);
 
-    if ((err = write_cfg->end(write_cfg->priv)) != ESP_OK) {
-        return err;
+    if (write_cfg->end) {
+        if ((err = write_cfg->end(write_cfg->priv)) != ESP_OK) {
+            return err;
+        }
     }
-
     uint32_t sec_num = coredump_size / SPI_FLASH_SEC_SIZE;
     if (coredump_size % SPI_FLASH_SEC_SIZE) {
         sec_num++;
