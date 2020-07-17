@@ -1,11 +1,8 @@
 /**
   * @brief coredump, sends coredump from flash to server
-  *
-  * CLOSED SOURCE, NOT FOR PUBLIC RELEASE
-  * (c) Copyright 2020, Coert Vonk
-  * All rights reserved. Use of copyright notice does not imply publication.
-  * All text above must be included in any redistribution
  **/
+// Copyright © 2020, Coert Vonk
+// SPDX-License-Identifier: MIT
 
 #include <stdlib.h>
 #include <string.h>
