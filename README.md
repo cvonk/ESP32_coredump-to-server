@@ -1,5 +1,7 @@
 # ESP32 - Core dump from flash to server
 
+[![LICENSE](https://img.shields.io/github/license/jvonk/pact)](LICENSE)
+
 ## Goal
 
 [The ESP-IDF API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/core_dump.html) provides support to generate core dumps on unrecoverable software errors. This useful technique allows post-mortem analysis of software state at the moment of failure.
