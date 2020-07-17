@@ -12,6 +12,8 @@ An example can be found in the [`test`](test) directory.
 
 ## Usage
 
+The software relies on the master ESP-IDF SDK version v4.3-dev-472-gcf056a7d0 and accompanying tools.
+
 Clone this component in your project's `components` directory, or use it as a git submodule.
 
 In your project's `sdkconfig.defaults`, specify:
