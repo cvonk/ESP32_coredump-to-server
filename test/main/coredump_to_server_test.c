@@ -1,20 +1,15 @@
 /**
-  * @brief demonstrates the use of "coredump_to_server"
-  *
-  * When the GPIO#0 is pulled low for 1 second, it triggers a "coredump
-  * to flash".  On the WROVER-KIT, GPIO#0 is hooked up to the BOOT button.
-  *
-  * Upon boot, the device checks the flash memory to see if it contains a
-  * coredump.  If so, the coredump is printed in base64 to UART.
-  * The `idf monitor` will catch this, and call `espcoredump.py` to
-  * analyze the coredump.
-  *
-  * For deployed devices, the coredump can be sent to e.g.. a
-  * netdump server for analysis.  To do so, modify the callback functions
-  * registered in `coredump_cfg`.
- **/
-// Copyright © 2020, Coert Vonk
-// SPDX-License-Identifier: MIT
+ * @brief ESP32_coredump-to-server - Demonstrates the use of "coredump_to_server"
+ *
+ * Written in 2019 by Coert Vonk 
+ * 
+ * To the extent possible under law, the author(s) have dedicated all copyright and related and
+ * neighboring rights to this software to the public domain worldwide. This software is
+ * distributed without any warranty. You should have received a copy of the CC0 Public Domain
+ * Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+ * 
+ * SPDX-License-Identifier: CC0-1.0
+ */
 
 #include <stdlib.h>
 #include <string.h>

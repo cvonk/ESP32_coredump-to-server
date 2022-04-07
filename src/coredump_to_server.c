@@ -1,8 +1,15 @@
 /**
-  * @brief coredump, sends coredump from flash to server
- **/
-// Copyright © 2020, Coert Vonk
-// SPDX-License-Identifier: MIT
+ * @brief ESP32_coredump-to-server - sends coredump from flash to server
+ *
+ * Written in 2019 by Coert Vonk 
+ * 
+ * To the extent possible under law, the author(s) have dedicated all copyright and related and
+ * neighboring rights to this software to the public domain worldwide. This software is
+ * distributed without any warranty. You should have received a copy of the CC0 Public Domain
+ * Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+ * 
+ * SPDX-License-Identifier: CC0-1.0
+ */
 
 #include <stdlib.h>
 #include <string.h>
@@ -21,7 +28,7 @@
 #define MIN(a,b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a < _b ? _a : _b; })
 static char const * const  TAG = "coredump";
 
-// from https://github.com/espressif/esp-idf/blob/cf056a7d0b90261923b8207f21dc270313b67456/components/espcoredump/src/core_dump_uart.c
+// inspired by https://github.com/espressif/esp-idf/blob/cf056a7d0b90261923b8207f21dc270313b67456/components/espcoredump/src/core_dump_uart.c
 static void
 esp_core_dump_b64_encode(const uint8_t *src, uint32_t src_len, uint8_t *dst) {
     const static DRAM_ATTR char b64[] =
@@ -79,15 +86,7 @@ coredump_to_server(coredump_to_server_config_t const * const write_cfg)
             ESP_LOGE(TAG, "Coredump read failed");
             break;
         }
-#if 1
         esp_core_dump_b64_encode(chunk, read_len, (uint8_t *)b64);
-#else
-        size_t olen;
-        if (mbedtls_base64_encode(b64, b64_len, &olen, chunk, read_len) != 0) {
-            ESP_LOGE(TAG, "Coredump b64 failed");
-            break;
-        }
-#endif
         //ets_printf("%s\r\n", b64);
         if (write_cfg->write) {
             if ((err = write_cfg->write(write_cfg->priv, b64)) != ESP_OK) {
