@@ -1,6 +1,6 @@
 # ESP32 - Core dump from flash to server
 
-[![GitHub Discussions](https://img.shields.io/github/discussions/cvonk/ESP32_coredump-to-server)](https://github.com/cvonk/ESP32_ota-update-task/discussions)
+[![GitHub Discussions](https://img.shields.io/github/discussions/cvonk/ESP32_coredump-to-server)](https://github.com/cvonk/ESP32_coredump-to-server/discussions)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/cvonk/ESP32_coredump-to-server)
 ![GitHub](https://img.shields.io/github/license/cvonk/ESP32_coredump-to-server)
 
